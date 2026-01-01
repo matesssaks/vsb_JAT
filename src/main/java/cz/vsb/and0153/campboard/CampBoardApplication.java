@@ -9,5 +9,4 @@ public class CampBoardApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CampBoardApplication.class, args);
 	}
-
 }
