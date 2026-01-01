@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,5 +18,9 @@ public class CampService {
 
 	public List<CampDto> getAllCamps() {
 		return campMapper.toDto(campRepository.findAll());
+	}
+
+	public Optional<CampDto> getCamp(Long id) {
+		return campRepository.findById(id).map(campMapper::toDto);
 	}
 }

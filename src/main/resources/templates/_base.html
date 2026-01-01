@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title th:text="#{app.name}"></title>
+	<title layout:fragment="title" th:text="#{_base.title}"></title>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,8 +24,8 @@
 		<header class="d-flex justify-content-between px-3 py-2 align-items-center sticky-top bg-white">
 			<a th:href="@{/}"
 			   class="fs-2 fw-semibold text-reset text-decoration-none"
-			   layout:fragment="header_title">
-				Summer Camps
+			   layout:fragment="header"
+			   th:text="#{_base.header}">
 			</a>
 			<div class="d-flex gap-3" layout:fragment="header_buttons">
 				<div class="dropdown" th:if="${session.user != null}">

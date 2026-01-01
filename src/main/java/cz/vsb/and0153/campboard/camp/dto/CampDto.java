@@ -1,15 +1,20 @@
 package cz.vsb.and0153.campboard.camp.dto;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.OffsetDateTime;
 
-public record CampDto(
-	Long id,
-	String name,
-	String description,
-	String imgUrl,
-	OffsetDateTime startDate,
-	OffsetDateTime endDate,
-	Integer price,
-	Integer capacity,
-	Integer registered
-) {}
+@Data
+@NoArgsConstructor
+public class CampDto {
+	private Long id;
+	private String name;
+	private String description;
+	private String imgUrl;
+	private OffsetDateTime startDate;
+	private OffsetDateTime endDate;
+	private Integer price;
+	private Integer capacity;
+	private Integer registered;
+}
