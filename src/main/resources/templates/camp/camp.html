@@ -22,7 +22,7 @@
 					<span th:text="*{description}"></span>
 				</div>
 				<div class="bg-dark text-white p-4 rounded-3 fs-3 d-flex flex-container justify-content-between">
-					<span><span th:text="*{price}"></span> Kč</span>
+					<span><span th:text="*{price}"></span> <th:block th:text="#{camp.czk}"></th:block></span>
 					<a class="btn btn-light text-black fs-5 py-1 px-5 icon-link" th:href="@{'/camp/register/' + *{id}}"
 					   th:text="#{camp.register}">
 					</a>

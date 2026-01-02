@@ -12,6 +12,7 @@ import java.time.OffsetDateTime;
 @Table(name = "camp")
 public class Camp {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "camp_id", nullable = false)
 	private Long id;
 

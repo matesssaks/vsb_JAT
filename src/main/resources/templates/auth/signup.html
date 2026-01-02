@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{_base}"
+>
+<title layout:fragment="title" th:text="#{signup.title}"></title>
+<div layout:fragment="header_buttons"></div>
+<main layout:fragment="content">
+	<div class="w-25 flex-grow-1 h-100 d-flex flex-column justify-content-center">
+		<form class="bg-white rounded-3 p-3 d-flex flex-column align-items-center gap-4"
+			  th:object="${form}" th:action="@{/signup}" method="post"
+		>
+			<span class="fs-2 fw-semibold lh-1" th:text="#{signup.signup}"></span>
+			<div class="flex-grow-1 w-100 form-floating">
+				<input class="form-control" id="username" name="username" type="text" placeholder="Username" required
+					   th:value="*{username}">
+				<label for="username" th:text="#{signup.username}">-</label>
+			</div>
+			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('username')}">
+				<div th:errors="*{username}"></div>
+			</div>
+			<div class="form-floating w-100">
+				<input class="form-control" id="email" name="email" type="email" placeholder="Email" autofocus required
+					   th:value="*{email}">
+				<label for="email" th:text="#{signup.email}">-</label>
+			</div>
+			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('email')}">
+				<div th:errors="*{email}"></div>
+			</div>
+			<div class="form-floating w-100">
+				<input class="form-control" id="password" name="password" type="password" placeholder="Password" required
+					   th:value="*{password}">
+				<label for="password" th:text="#{signup.password}">-</label>
+			</div>
+			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('password')}">
+				<div th:errors="*{password}"></div>
+			</div>
+			<div class="form-floating w-100">
+				<input class="form-control" id="password2" name="password2" type="password" placeholder="Confirm password" required
+					   th:value="*{password2}">
+				<label for="password2" th:text="#{signup.confirm_password}">-</label>
+			</div>
+			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('password2')}">
+				<div th:errors="*{password2}"></div>
+			</div>
+			<button class="btn btn-primary px-3 py-2" type="submit" th:text="#{signup.signup}"></button>
+			<span>
+				<th:block th:text="#{signup.already_account}"></th:block> <a class="link-primary" th:href="@{/login}" th:text="#{signup.login}"></a>
+			</span>
+		</form>
+	</div>
+</main>

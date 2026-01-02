@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{_base}"
+>
+<title layout:fragment="title" th:text="#{login.title}"></title>
+<div layout:fragment="header_buttons"></div>
+<main layout:fragment="content">
+	<div class="w-25 flex-grow-1 h-100 d-flex flex-column justify-content-center">
+		<form class="bg-white rounded-3 p-3 d-flex flex-column align-items-center gap-4" th:action="@{/login}" method="post">
+			<span class="fs-2 fw-semibold lh-1" th:text="#{login.login}"></span>
+			<div class="form-floating w-100">
+				<input class="form-control" id="username" name="username" type="text" placeholder="Username" autofocus required>
+				<label for="username" th:text="#{login.username}">-</label>
+			</div>
+			<div class="form-floating w-100">
+				<input class="form-control" id="password" name="password" type="password" placeholder="Password" required>
+				<label for="password" th:text="#{login.password}">-</label>
+			</div>
+			<div class="alert alert-danger m-0 w-100 text-center" th:if="${param.error}">
+				<div th:text="#{login.invalid}"></div>
+			</div>
+			<button class="btn btn-primary px-3 py-2" type="submit" th:text="#{login.login}"></button>
+			<span>
+				<th:block th:text="#{login.no_account}"></th:block> <a class="link-primary" th:href="@{/signup}" th:text="#{login.create}"></a>
+			</span>
+		</form>
+	</div>
+</main>

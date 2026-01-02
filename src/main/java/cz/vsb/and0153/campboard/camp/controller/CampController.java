@@ -4,6 +4,7 @@ import cz.vsb.and0153.campboard.camp.dto.CampDto;
 import cz.vsb.and0153.campboard.camp.service.CampService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +20,14 @@ public class CampController {
 	private final CampService campService;
 
 	@GetMapping({"", "/"})
+	@PreAuthorize("permitAll()")
 	public String getCamps(Model model) {
 		model.addAttribute("camps", campService.getAllCamps());
 		return "camp/camps";
 	}
 
 	@GetMapping("/{id}")
+	@PreAuthorize("permitAll()")
 	public String getCamp(@PathVariable Long id, Model model) {
 		CampDto camp = campService.getCamp(id).orElseThrow(() ->
 			new ResponseStatusException(HttpStatus.NOT_FOUND, "Camp not found")
@@ -35,6 +38,7 @@ public class CampController {
 	}
 
 	@GetMapping("/register/{id}")
+	@PreAuthorize("isAuthenticated()")
 	public String registerCamp(@PathVariable Long id, Model model) {
 		CampDto camp = campService.getCamp(id).orElseThrow(() ->
 			new ResponseStatusException(HttpStatus.NOT_FOUND, "Camp not found")
