@@ -1,6 +1,7 @@
 package cz.vsb.and0153.campboard.auth.service;
 
-import cz.vsb.and0153.campboard.user.service.UserService;
+import cz.vsb.and0153.campboard.auth.dto.AppUserDetails;
+import cz.vsb.and0153.campboard.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,12 +13,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AppUserDetailsService implements UserDetailsService {
 
-	private final UserService userService;
+	private final UserRepository userRepository;
 
 	@Override
 	@NonNull
 	public UserDetails loadUserByUsername(@NonNull String username) throws UsernameNotFoundException {
-		return userService.getUserByUsername(username).orElseThrow(() ->
+		return userRepository.findByUsername(username).map(AppUserDetails::new).orElseThrow(() ->
 			new UsernameNotFoundException("User not found")
 		);
 	}

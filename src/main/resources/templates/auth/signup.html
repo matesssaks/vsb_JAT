@@ -14,32 +14,32 @@
 		>
 			<span class="fs-2 fw-semibold lh-1" th:text="#{signup.signup}"></span>
 			<div class="flex-grow-1 w-100 form-floating">
-				<input class="form-control" id="username" name="username" type="text" placeholder="Username" required
-					   th:value="*{username}">
+				<input class="form-control" id="username" type="text" th:placeholder="#{signup.username}" required
+					   th:field="*{username}">
 				<label for="username" th:text="#{signup.username}">-</label>
 			</div>
 			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('username')}">
 				<div th:errors="*{username}"></div>
 			</div>
 			<div class="form-floating w-100">
-				<input class="form-control" id="email" name="email" type="email" placeholder="Email" autofocus required
-					   th:value="*{email}">
+				<input class="form-control" id="email" type="email" th:placeholder="#{signup.email}" autofocus required
+					   th:field="*{email}">
 				<label for="email" th:text="#{signup.email}">-</label>
 			</div>
 			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('email')}">
 				<div th:errors="*{email}"></div>
 			</div>
 			<div class="form-floating w-100">
-				<input class="form-control" id="password" name="password" type="password" placeholder="Password" required
-					   th:value="*{password}">
+				<input class="form-control" id="password" type="password" th:placeholder="#{signup.password}" required
+					   th:field="*{password}">
 				<label for="password" th:text="#{signup.password}">-</label>
 			</div>
 			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('password')}">
 				<div th:errors="*{password}"></div>
 			</div>
 			<div class="form-floating w-100">
-				<input class="form-control" id="password2" name="password2" type="password" placeholder="Confirm password" required
-					   th:value="*{password2}">
+				<input class="form-control" id="password2" type="password" th:placeholder="#{signup.confirm_password}" required
+					   th:field="*{password2}">
 				<label for="password2" th:text="#{signup.confirm_password}">-</label>
 			</div>
 			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('password2')}">

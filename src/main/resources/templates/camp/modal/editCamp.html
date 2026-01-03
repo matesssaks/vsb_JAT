@@ -1,0 +1,91 @@
+<div
+	xmlns:th="http://www.thymeleaf.org"
+	class="modal-dialog modal-dialog-centered modal-lg"
+>
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" th:text="${camp.id} == null ? #{camps.modal.new} : #{camps.modal.edit}">-</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" th:aria-label="#{close}"></button>
+		</div>
+		<form method="post" th:action="@{/camp/save}" th:object="${camp}" data-modal>
+			<input type="hidden" th:field="*{id}">
+			<div class="modal-body d-flex flex-column align-items-center gap-4">
+				<div class="flex-grow-1 w-100 form-floating">
+					<input class="form-control" id="name" type="text" th:placeholder="#{camps.modal.name}" autofocus required
+						   th:field="*{name}">
+					<label for="name"
+						   th:text="#{camps.modal.name}"
+					>-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('name')}">
+					<div th:errors="*{name}"></div>
+				</div>
+				<div class="flex-grow-1 w-100 form-floating">
+					<input class="form-control" id="imgUrl" type="text" th:placeholder="#{camps.modal.imgUrl}" required
+						   th:field="*{imgUrl}">
+					<label for="imgUrl"
+						   th:text="#{camps.modal.imgUrl}"
+					>-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('imgUrl')}">
+					<div th:errors="*{imgUrl}"></div>
+				</div>
+				<div class="d-flex gap-3 w-100">
+					<div class="flex-grow-1 w-50 form-floating">
+						<input class="form-control" id="startDate" type="datetime-local" th:placeholder="#{camps.modal.startDate}" required
+							   th:field="*{startDate}">
+						<label for="startDate"
+							   th:text="#{camps.modal.startDate}"
+						>-</label>
+					</div>
+					<div class="flex-grow-1 w-50 form-floating">
+						<input class="form-control" id="endDate" type="datetime-local" th:placeholder="#{camps.modal.endDate}" required
+							   th:field="*{endDate}">
+						<label for="endDate"
+							   th:text="#{camps.modal.endDate}"
+						>-</label>
+					</div>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('startDate')} or ${#fields.hasErrors('endDate')}">
+					<div th:errors="*{startDate}"></div>
+					<div th:errors="*{endDate}"></div>
+				</div>
+				<div class="d-flex gap-3 w-100">
+					<div class="flex-grow-1 w-50 form-floating">
+						<input class="form-control" id="capacity" type="number" th:placeholder="#{camps.modal.capacity}" step="1" min="0" required
+							   th:field="*{capacity}">
+						<label for="capacity"
+							   th:text="#{camps.modal.capacity}"
+						>-</label>
+					</div>
+					<div class="flex-grow-1 w-50 form-floating">
+						<input class="form-control" id="price" type="number" th:placeholder="#{camps.modal.price}" step="any" min="0" required
+							   th:field="*{price}">
+						<label for="price"
+							   th:text="#{camps.modal.price}"
+						>-</label>
+					</div>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('capacity')} or ${#fields.hasErrors('price')}">
+					<div th:errors="*{capacity}"></div>
+					<div th:errors="*{price}"></div>
+				</div>
+				<div class="flex-grow-1 w-100 form-floating">
+					<textarea class="form-control h-100" id="description" rows=5 style="resize: none;" required
+							  th:placeholder="#{camps.modal.description}"
+							  th:field="*{description}"
+					></textarea>
+					<label for="description"
+						   th:text="#{camps.modal.description}"
+					>-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('description')}">
+					<div th:errors="*{description}"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary px-3 py-2" th:text="#{save}"></button>
+			</div>
+		</form>
+	</div>
+</div>

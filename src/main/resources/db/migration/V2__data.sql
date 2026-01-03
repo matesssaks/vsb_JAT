@@ -8,6 +8,7 @@ insert into users (name, email, password) values ('alexi', 'akeuning6@nature.com
 insert into users (name, email, password) values ('cherianne', 'cberinger7@facebook.com', '$2a$10$VxkfoKGsTCEM7BmHJbDiq.D30/rFGKZaWwfYZKiO1LhgSqEpj5V/e');
 insert into users (name, email, password) values ('hermann', 'hewbanche8@buzzfeed.com', '$2a$10$VxkfoKGsTCEM7BmHJbDiq.D30/rFGKZaWwfYZKiO1LhgSqEpj5V/e');
 insert into users (name, email, password) values ('estrellita', 'emacgorman9@biglobe.ne.jp', '$2a$10$VxkfoKGsTCEM7BmHJbDiq.D30/rFGKZaWwfYZKiO1LhgSqEpj5V/e');
+insert into users (name, email, password, admin) values ('admin', 'admin@admin.admin', '$2a$10$VxkfoKGsTCEM7BmHJbDiq.D30/rFGKZaWwfYZKiO1LhgSqEpj5V/e', true);
 
 insert into person (user_id, personal_number, name, town, street, postal_code, born_date) values (8, '123451/040', 'Gregor Astman', 'Ganlin', '8139 Artisan Pass', '79308', '2024-02-20');
 insert into person (user_id, personal_number, name, town, street, postal_code, born_date) values (7, '123452/040', 'Lowe Delaney', 'Huayuanli', '0 Maple Wood Place', '79307', '2023-07-18');

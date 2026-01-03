@@ -1,8 +1,9 @@
 CREATE TABLE users (
 	user_id identity PRIMARY KEY,
-	name varchar(50) NOT NULL,
+	name varchar(50) UNIQUE NOT NULL,
 	email varchar(50) UNIQUE NOT NULL,
 	password varchar(255) NOT NULL,
+	admin boolean NOT NULL DEFAULT false,
 	CHECK (email LIKE '%_@_%._%')
 );
 
@@ -26,11 +27,9 @@ CREATE TABLE camp (
 	start_date timestamp with time zone NOT NULL,
 	end_date timestamp with time zone NOT NULL,
 	price int NOT NULL,
-	capacity int NOT NULL,
-	registered int NOT NULL DEFAULT (0)
+	capacity int NOT NULL
 	CHECK (price >= 0)
 	CHECK (capacity >= 0)
-	CHECK (registered >= 0)
 	CHECK (start_date < end_date)
 );
 

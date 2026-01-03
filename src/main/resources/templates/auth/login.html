@@ -12,11 +12,11 @@
 		<form class="bg-white rounded-3 p-3 d-flex flex-column align-items-center gap-4" th:action="@{/login}" method="post">
 			<span class="fs-2 fw-semibold lh-1" th:text="#{login.login}"></span>
 			<div class="form-floating w-100">
-				<input class="form-control" id="username" name="username" type="text" placeholder="Username" autofocus required>
+				<input class="form-control" id="username" name="username" type="text" th:placeholder="#{login.username}" autofocus required>
 				<label for="username" th:text="#{login.username}">-</label>
 			</div>
 			<div class="form-floating w-100">
-				<input class="form-control" id="password" name="password" type="password" placeholder="Password" required>
+				<input class="form-control" id="password" name="password" type="password" th:placeholder="#{login.password}" required>
 				<label for="password" th:text="#{login.password}">-</label>
 			</div>
 			<div class="alert alert-danger m-0 w-100 text-center" th:if="${param.error}">

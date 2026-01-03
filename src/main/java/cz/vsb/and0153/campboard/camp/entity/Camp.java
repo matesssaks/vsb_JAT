@@ -36,7 +36,4 @@ public class Camp {
 
 	@Column(name = "capacity", nullable = false)
 	private Integer capacity;
-
-	@Column(name = "registered", nullable = false)
-	private Integer registered;
 }

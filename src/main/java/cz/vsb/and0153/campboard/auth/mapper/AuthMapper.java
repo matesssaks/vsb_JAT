@@ -1,7 +1,7 @@
 package cz.vsb.and0153.campboard.auth.mapper;
 
 import cz.vsb.and0153.campboard.auth.dto.RegisterForm;
-import cz.vsb.and0153.campboard.user.dto.UserDto;
+import cz.vsb.and0153.campboard.user.entity.User;
 import lombok.Setter;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,7 +15,7 @@ public abstract class AuthMapper {
 	protected PasswordEncoder encoder;
 
 	@Mapping(target = "id", ignore = true)
-	@Mapping(target = "authorities", ignore = true)
 	@Mapping(target = "password", expression = "java(encoder.encode(form.getPassword()))")
-	public abstract UserDto toUser(RegisterForm form);
+	@Mapping(target = "admin", expression = "java(false)")
+	public abstract User toEntity(RegisterForm form);
 }

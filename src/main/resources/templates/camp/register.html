@@ -7,7 +7,7 @@
 <title layout:fragment="title" th:text="#{camp_register.title} + ' ' + ${camp.name}"></title>
 <main layout:fragment="content" th:object="${camp}">
 	<form class="flex-grow-1 h-100 w-75 d-flex flex-column gap-3">
-		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3">
+		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3 shadow">
 			<label for="person" class="text-secondary lh-1"
 				   th:text="#{camp_register.person}"
 			>-</label>
@@ -27,7 +27,7 @@
 				></a>
 			</div>
 		</div>
-		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3">
+		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3 shadow">
 			<span class="text-secondary lh-1" th:text="#{camp_register.camp}"></span>
 			<div class="w-100 row g-0 align-items-center fw-semibold">
 				<span class="col col-6 fs-5 lh-1" th:text="*{name}"></span>
@@ -36,7 +36,7 @@
 				></a>
 			</div>
 		</div>
-		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3">
+		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3 shadow">
 			<span class="text-secondary lh-1"
 				  th:text="#{camp_register.payment.option}"
 			></span>
@@ -55,7 +55,7 @@
 					   th:text="#{camp_register.payment.paypal}">-</label>
 			</div>
 		</div>
-		<div class="w-100 bg-white rounded-3 p-4 flex-grow-1 h-100 d-flex flex-column gap-3">
+		<div class="w-100 bg-white rounded-3 p-4 flex-grow-1 h-100 d-flex flex-column gap-3 shadow">
 			<label for="info" class="text-secondary lh-1"
 				   th:text="#{camp_register.additional}"
 			>-</label>

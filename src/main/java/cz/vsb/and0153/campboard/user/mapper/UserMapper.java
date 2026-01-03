@@ -9,10 +9,11 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-	@Mapping(target = "authorities", ignore = true)
 	UserDto toDto(User entity);
 	List<UserDto> toDto(List<User> entities);
 
+	@Mapping(target = "password", ignore = true)
+	@Mapping(target = "admin", expression = "java(false)")
 	User toEntity(UserDto dto);
 	List<User> toEntity(List<UserDto> dtos);
 }

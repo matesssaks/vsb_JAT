@@ -1,4 +1,4 @@
-package cz.vsb.and0153.campboard.auth.service;
+package cz.vsb.and0153.campboard.auth.config;
 
 import org.jspecify.annotations.NonNull;
 import org.springframework.aop.MethodMatcher;

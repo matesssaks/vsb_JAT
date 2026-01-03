@@ -2,7 +2,7 @@ package cz.vsb.and0153.campboard.auth.service;
 
 import cz.vsb.and0153.campboard.auth.dto.RegisterForm;
 import cz.vsb.and0153.campboard.auth.mapper.AuthMapper;
-import cz.vsb.and0153.campboard.user.service.UserService;
+import cz.vsb.and0153.campboard.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthService {
 
-	private final UserService userService;
+	private final UserRepository userRepository;
 	private final AuthMapper authMapper;
 
 	public void registerUser(RegisterForm form) {
-		userService.createUser(authMapper.toUser(form));
+		userRepository.save(authMapper.toEntity(form));
 	}
 }

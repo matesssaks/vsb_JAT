@@ -23,4 +23,12 @@ public class CampService {
 	public Optional<CampDto> getCamp(Long id) {
 		return campRepository.findById(id).map(campMapper::toDto);
 	}
+
+	public CampDto saveCamp(CampDto camp) {
+		return campMapper.toDto(campRepository.save(campMapper.toEntity(camp)));
+	}
+
+	public void deleteCamp(Long id) {
+		campRepository.deleteById(id);
+	}
 }
