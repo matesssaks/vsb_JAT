@@ -5,7 +5,6 @@ import cz.vsb.and0153.campboard.person.dto.PersonDto;
 import cz.vsb.and0153.campboard.person.dto.PersonForm;
 import cz.vsb.and0153.campboard.person.service.PersonService;
 import jakarta.validation.Valid;
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;

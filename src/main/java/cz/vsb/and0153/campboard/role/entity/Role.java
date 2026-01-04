@@ -1,8 +1,14 @@
 package cz.vsb.and0153.campboard.role.entity;
 
+import cz.vsb.and0153.campboard.participant.entity.Worker;
+import cz.vsb.and0153.campboard.participant.entity.Worker_;
+import cz.vsb.and0153.campboard.person.entity.Person;
+import cz.vsb.and0153.campboard.person.entity.Person_;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,4 +31,7 @@ public class Role {
 
 	@Column(name = "can_toggle_task", nullable = false)
 	private Boolean canToggleTask;
+
+	@OneToMany(mappedBy = Worker_.ROLE, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Worker> workers;
 }

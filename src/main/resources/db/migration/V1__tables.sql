@@ -52,9 +52,3 @@ CREATE TABLE worker (
 	participant_id int PRIMARY KEY REFERENCES participant (participant_id),
 	role_id int NOT NULL REFERENCES role (role_id)
 );
-
-CREATE TABLE participant_task (
-	participant_id int NOT NULL REFERENCES participant (participant_id),
-	task_id int NOT NULL,
-	PRIMARY KEY (participant_id, task_id)
-);

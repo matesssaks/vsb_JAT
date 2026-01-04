@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component("personSecurity")
 @RequiredArgsConstructor
-public class PersonSecurity {
+public class PersonSecurityService {
 
 	private final PersonRepository personRepository;
 

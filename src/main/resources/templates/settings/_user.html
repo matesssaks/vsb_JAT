@@ -6,18 +6,17 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{_base}"
 >
-<body th:with="page=${page ?: ''}">
-	<div layout:fragment="side">
-		<nav class="sticky-top nav nav-pills flex-column px-3 pt-4 gap-3">
-			<span th:text="#{_user.menu.header}"></span>
-			<a th:class="'nav-link fs-4 pe-5' + (${page} == 'person' ? ' active' : '')"
-			   th:href="@{/person}" th:text="#{_user.menu.persons}"></a>
-			<a th:class="'nav-link fs-4 pe-5' + (${page} == 'participant' ? ' active' : '')"
-			   th:href="@{/participant}" th:text="#{_user.menu.registrations}"></a>
-			<a th:class="'nav-link fs-4 pe-5' + (${page} == 'role' ? ' active' : '')"
-			   th:href="@{/role}" th:text="#{_user.menu.roles}"
-			   sec:authorize="hasRole('ADMIN')"
-			></a>
-		</nav>
-	</div>
-</body>
+<!--/*@thymesVar id="page" type="java.lang.String"*/-->
+<div layout:fragment="side">
+	<nav class="sticky-top nav nav-pills flex-column px-3 pt-4 gap-3">
+		<span th:text="#{_user.menu.header}"></span>
+		<a th:class="'nav-link fs-4 pe-5' + (${page} == 'person' ? ' active' : '')"
+		   th:href="@{/person}" th:text="#{_user.menu.persons}"></a>
+		<a th:class="'nav-link fs-4 pe-5' + (${page} == 'participant' ? ' active' : '')"
+		   th:href="@{/participant}" th:text="#{_user.menu.registrations}"></a>
+		<a th:class="'nav-link fs-4 pe-5' + (${page} == 'role' ? ' active' : '')"
+		   th:href="@{/role}" th:text="#{_user.menu.roles}"
+		   sec:authorize="hasRole('ADMIN')"
+		></a>
+	</nav>
+</div>

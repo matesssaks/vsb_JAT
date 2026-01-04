@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{dashboard/_dashboard}"
+	th:with="page='worker'"
+>
+<title layout:fragment="title" th:text="#{workers.title(${camp.name})}"></title>
+<main layout:fragment="content">
+	<form th:action="@{/camp/{id}/worker(id=${camp.id})}" method="post" class="d-flex gap-3 w-75" th:object="${search}">
+		<div class="flex-grow-1 w-50 form-floating shadow-sm">
+			<input class="form-control" id="name" type="text"
+				   th:placeholder="#{workers.search.name}"
+				   th:field="*{name}"
+			>
+			<label for="name"
+				   th:text="#{workers.search.name}"
+			>-</label>
+		</div>
+		<div class="flex-grow-1 w-25 form-check d-flex gap-4 align-items-center bg-white rounded-3 shadow-sm">
+			<input type="checkbox" class="btn-check" id="includeAll" autocomplete="off"
+				   name="includeAll"
+				   th:checked="*{includeAll}">
+			<label class="btn btn-outline-primary icon-link p-1 fs-5 text-white" for="includeAll"
+				   aria-label="btn" th:aria-label="#{workers.search.includeAll}"
+			>
+				<i class="bi bi-check-lg"></i>
+			</label>
+			<input type="hidden" name="_includeAll" value="on">
+			<label th:text="#{workers.search.includeAll}" for="includeAll">-</label>
+		</div>
+		<div class="flex-grow-1 w-25 form-floating">
+			<button class="btn bg-white text-primary text-center rounded-3 w-100 d-flex align-items-center justify-content-center py-3 shadow-sm"
+					type="submit">
+				<span class="fw-bold" th:text="#{search}"></span>
+			</button>
+		</div>
+	</form>
+	<div th:each="worker : ${workers}" th:object="${worker}" class="w-75 bg-white p-4 rounded-3 fs-5 d-flex justify-content-between align-items-center shadow-sm">
+		<span class="fw-semibold">
+			<span th:text="*{person.name}"></span>
+			<span th:if="*{worker != null}"> | <th:block th:text="*{worker.role.name}"></th:block></span>
+		</span>
+		<div class="d-flex gap-3" th:if="*{worker != null}">
+			<a class="btn icon-link p-1 fs-2 text-primary" th:href="@{/camp/{campId}/worker/edit/{workerId}(campId=${camp.id},workerId=*{worker.id})}" data-modal>
+				<i class="bi bi-pen"></i>
+			</a>
+			<a class="btn icon-link p-1 fs-2 text-danger" th:href="@{/camp/{campId}/worker/delete/{workerId}(campId=${camp.id},workerId=*{worker.id})}" data-modal>
+				<i class="bi bi-trash"></i>
+			</a>
+		</div>
+		<div class="d-flex gap-3" th:if="*{worker == null}">
+			<a class="btn icon-link p-1 fs-2 text-success" th:href="@{/camp/{campId}/worker/new/{personId}(campId=${camp.id},personId=*{person.id})}" data-modal>
+				<i class="bi bi-plus-lg"></i>
+			</a>
+		</div>
+	</div>
+</main>

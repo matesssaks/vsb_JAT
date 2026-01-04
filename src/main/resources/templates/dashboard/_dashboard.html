@@ -1,16 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html
 	lang="en"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{_base}"
 >
+<!--/*@thymesVar id="page" type="java.lang.String"*/-->
+<!--/*@thymesVar id="camp" type="cz.vsb.and0153.campboard.camp.dto.CampDto"*/-->
 <div layout:fragment="side">
 	<nav class="sticky-top nav nav-pills flex-column px-3 pt-4 gap-3">
 		<span th:text="${camp.name}"></span>
-		<a th:class="'nav-link fs-4 pe-5' + (${page} == 'tasks' ? ' active' : '')"
-		   th:href="@{'/camp/' + ${camp.id} + '/tasks'}">Tasks</a>
-		<a th:class="'nav-link fs-4 pe-5' + (${page} == 'medic' ? ' active' : '')"
-		   th:href="@{'/camp/' + ${camp.id} + '/medic'}">Medic plan</a>
+		<a th:class="'nav-link fs-4 pe-5' + (${page} == 'task' ? ' active' : '')"
+		   th:href="@{/camp/{id}/task(id=${camp.id})}"
+		   th:text="#{_dashboard.menu.tasks}"
+		></a>
+		<a th:class="'nav-link fs-4 pe-5' + (${page} == 'worker' ? ' active' : '')"
+		   th:href="@{/camp/{id}/worker(id=${camp.id})}"
+		   th:text="#{_dashboard.menu.workers}"
+		></a>
 	</nav>
 </div>

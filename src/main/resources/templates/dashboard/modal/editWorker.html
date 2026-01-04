@@ -1,0 +1,35 @@
+<div
+	xmlns:th="http://www.thymeleaf.org"
+	class="modal-dialog modal-dialog-centered"
+>
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" th:utext="#{workers.modal.edit('<strong>' + ${person.name} + '</strong>')}">-</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" th:aria-label="#{close}"></button>
+		</div>
+		<form method="post" th:action="@{/camp/{campId}/worker/save(campId=${camp.id})}" th:object="${worker}" data-modal>
+			<input type="hidden" th:field="*{id}">
+			<input type="hidden" th:field="*{person}">
+			<div class="modal-body d-flex flex-column align-items-center gap-4">
+				<div class="flex-grow-1 w-100 form-floating">
+					<select id="role" class="form-control" th:field="*{role}" autofocus required>
+						<option value="" selected>---</option>
+						<option th:each="r : ${roles}"
+								th:value="${r.id}"
+								th:text="${r.name}"
+						></option>
+					</select>
+					<label for="role"
+						   th:text="#{camps.modal.name}"
+					>-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('role')}">
+					<div th:errors="*{role}"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary px-3 py-2" th:text="#{save}"></button>
+			</div>
+		</form>
+	</div>
+</div>

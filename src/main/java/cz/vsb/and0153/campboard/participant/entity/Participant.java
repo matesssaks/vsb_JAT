@@ -12,6 +12,7 @@ import java.time.OffsetDateTime;
 @Setter
 @Entity
 @Table(name = "participant")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Participant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

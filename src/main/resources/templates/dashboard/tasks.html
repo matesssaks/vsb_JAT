@@ -4,11 +4,11 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{dashboard/_dashboard}"
+	th:with="page='task'"
 >
-<head>
-	<title><th:block th:text="#{app.name}"></th:block> | Tasks</title>
-</head>
+<title layout:fragment="title" th:text="#{tasks.title(${camp.name})}"></title>
 <main layout:fragment="content">
+	<!--
 	<button class="w-75 btn icon-link bg-white text-success text-center p-4 rounded-3 d-flex justify-content-center"
 			th:onclick="|getModal('@{/camp/{id}/task/new(id=${camp.id})}')|">
 		<i class="bi bi-plus-lg fs-2"></i>
@@ -27,4 +27,5 @@
 			</button>
 		</div>
 	</div>
+	-->
 </main>

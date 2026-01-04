@@ -1,5 +1,6 @@
 package cz.vsb.and0153.campboard.auth.config;
 
+import cz.vsb.and0153.campboard.auth.dto.AppUserDetails;
 import org.jspecify.annotations.NonNull;
 import org.springframework.aop.MethodMatcher;
 import org.springframework.aop.support.*;
@@ -43,6 +44,9 @@ public class SecurityConfig {
 			.logout(logout -> logout
 				.logoutSuccessUrl("/")
 				.permitAll()
+			)
+			.anonymous(anonymous -> anonymous
+				.principal(new AppUserDetails(null, null))
 			);
 
 		return http.build();
