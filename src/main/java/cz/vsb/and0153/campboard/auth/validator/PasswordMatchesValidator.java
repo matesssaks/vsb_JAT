@@ -1,12 +1,12 @@
 package cz.vsb.and0153.campboard.auth.validator;
 
-import cz.vsb.and0153.campboard.auth.dto.RegisterForm;
+import cz.vsb.and0153.campboard.auth.dto.SignupForm;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, RegisterForm> {
+public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, SignupForm> {
 	@Override
-	public boolean isValid(RegisterForm form, ConstraintValidatorContext context) {
+	public boolean isValid(SignupForm form, ConstraintValidatorContext context) {
 		if (form.getPassword() == null) return form.getPassword2() == null;
 
 		boolean isValid = form.getPassword().equals(form.getPassword2());

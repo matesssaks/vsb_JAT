@@ -54,13 +54,6 @@ insert into person (user_id, personal_number, name, town, street, postal_code, b
 insert into person (user_id, personal_number, name, town, street, postal_code, born_date) values (8, '123493/040', 'Uriel Ternent', 'Quzhou', '18417 Dunning Parkway', '76930', '2017-05-14');
 insert into person (user_id, personal_number, name, town, street, postal_code, born_date) values (3, '123494/040', 'Sky Arnoll', 'Baltimore', '68 Holmberg Parkway', '79430', '2005-01-25');
 
-insert into drug (person_id, name, dosage, description) values (9, 'Stopangin', 12, 'Může se mu potom udělat blbě');
-insert into drug (person_id, name, dosage, description) values (33, 'Arthritis Pain and Joint Relief', 3, null);
-insert into drug (person_id, name, dosage, description) values (2, 'Medrol', 1, 'Kontrolovat poté teplotu');
-insert into drug (person_id, name, dosage, description) values (18, 'SKIN MOISTURIZING', 9, 'Nebrat v pondělí');
-insert into drug (person_id, name, dosage, description) values (39, 'Sulfamethoxazole a Trimethoprim', 24, null);
-insert into drug (person_id, name, dosage, description) values (36, 'Peppermint', 48, null);
-
 insert into role (role_id, name, can_edit_camp, can_create_task, can_edit_task, can_view_drugs, can_receive_info) values (1, 'Účastník', false, false, false, false, false);
 insert into role (role_id, name, can_edit_camp, can_create_task, can_edit_task, can_view_drugs, can_receive_info) values (2, 'Praktikant', false, false, true, false, false);
 insert into role (role_id, name, can_edit_camp, can_create_task, can_edit_task, can_view_drugs, can_receive_info) values (3, 'Vedoucí', false, true, true, false, false);
@@ -74,11 +67,11 @@ insert into camp (name, description, img_url, start_date, end_date, price, capac
 insert into camp (name, description, img_url, start_date, end_date, price, capacity) values ('Jak vycvičit draka', 'Můžete se těšit na napínavý dějový příběh, vnitřní vyhřívaný bazén, venkovní lanové a horolezecké centrum a další!', 'https://www.orientka.cz/wp-content/uploads/2024/11/Jak-vycvicit-draka-2-1024x724.png', '2024-5-17 00:00:00+01', '2024-6-20 00:00:00+01', 391539, 9);
 insert into camp (name, description, img_url, start_date, end_date, price, capacity) values ('Hobby horsing', 'Nikdo sem nechce.', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.wL-3KlHVssDkB_eRrsh8JgHaH0%26pid%3DApi&f=1&ipt=37ea35d6bbe04735dcb1cae3bea6095434a14871087c839346dd4138bc2efe29&ipo=images', '2024-1-21 00:00:00+01', '2024-2-5 00:00:00+01', 362017, 100);
 
-insert into participant (camp_id, person_id, role_id) values (1, 9, 3);
-insert into participant (camp_id, person_id, role_id) values (1, 32, 4);
-insert into participant (camp_id, person_id, role_id) values (1, 1, 5);
-insert into participant (camp_id, person_id, role_id) values (2, 2, 2);
-insert into participant (camp_id, person_id, role_id) values (2, 39, 3);
-insert into participant (camp_id, person_id, role_id) values (4, 33, 2);
-insert into participant (camp_id, person_id, role_id) values (4, 42, 4);
-insert into participant (camp_id, person_id, role_id) values (5, 35, 3);
+insert into participant (camp_id, person_id, registered_date) values (1, 9, '2024-8-21 10:00:00+01');
+insert into participant (camp_id, person_id, registered_date) values (1, 32, '2024-8-22 02:00:00+01');
+insert into participant (camp_id, person_id, registered_date) values (1, 1, '2024-8-25 03:00:00+01');
+insert into participant (camp_id, person_id, registered_date) values (2, 2, '2024-9-10 04:00:00+01');
+insert into participant (camp_id, person_id, registered_date) values (2, 39, '2024-9-16 05:00:00+01');
+insert into participant (camp_id, person_id, registered_date) values (4, 33, '2024-9-19 09:00:00+01');
+insert into participant (camp_id, person_id, registered_date) values (4, 42, '2024-10-1 11:00:00+01');
+insert into participant (camp_id, person_id, registered_date) values (5, 35, '2024-10-1 09:00:00+01');

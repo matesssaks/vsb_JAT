@@ -5,6 +5,7 @@ import cz.vsb.and0153.campboard.person.dto.PersonDto;
 import cz.vsb.and0153.campboard.person.dto.PersonForm;
 import cz.vsb.and0153.campboard.person.service.PersonService;
 import jakarta.validation.Valid;
+import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,7 +32,7 @@ public class PersonController {
 	@GetMapping({"", "/"})
 	@PreAuthorize("isAuthenticated()")
 	public String getAllPersons(Model model, @AuthenticationPrincipal AppUserDetails userDetails) {
-		model.addAttribute(PERSON_LIST_VAR, personService.getAllPersonsByUser(userDetails.user()));
+		model.addAttribute(PERSON_LIST_VAR, personService.getAllPersonsByUser(userDetails.getUser()));
 		return PERSON_LIST_TEMPLATE;
 	}
 
@@ -43,7 +44,7 @@ public class PersonController {
 	}
 
 	@GetMapping("/edit/{id}")
-	@PreAuthorize("@personSecurity.isAllowed(principal, #id)")
+	@PreAuthorize("@personSecurity.isPersonManager(principal, #id)")
 	public String editPerson(@PathVariable Long id, Model model) {
 		PersonDto person = personService.getPerson(id).orElseThrow(() ->
 			new ResponseStatusException(HttpStatus.NOT_FOUND)
@@ -54,7 +55,7 @@ public class PersonController {
 	}
 
 	@PostMapping("/save")
-	@PreAuthorize("@personSecurity.isAllowed(principal, #form.id)")
+	@PreAuthorize("@personSecurity.isPersonManager(principal, #form.id)")
 	public String savePerson(
 		@ModelAttribute(PERSON_VAR) @Valid PersonForm form,
 		BindingResult result,
@@ -64,12 +65,13 @@ public class PersonController {
 			return PERSON_EDIT_MODAL;
 		}
 
-		personService.savePerson(form, userDetails.user());
+		personService.savePerson(form, userDetails.getUser());
+
 		return "redirect:/person";
 	}
 
 	@GetMapping("/delete/{id}")
-	@PreAuthorize("@personSecurity.isAllowed(principal, #id)")
+	@PreAuthorize("@personSecurity.isPersonManager(principal, #id)")
 	public String deletePerson(@PathVariable Long id, Model model) {
 		PersonDto person = personService.getPerson(id).orElseThrow(() ->
 			new ResponseStatusException(HttpStatus.NOT_FOUND)
@@ -80,7 +82,7 @@ public class PersonController {
 	}
 
 	@PostMapping("/delete/{id}")
-	@PreAuthorize("@personSecurity.isAllowed(principal, #id)")
+	@PreAuthorize("@personSecurity.isPersonManager(principal, #id)")
 	public String confirmDeletePerson(@PathVariable Long id) {
 		personService.deletePerson(id);
 		return "redirect:/person";

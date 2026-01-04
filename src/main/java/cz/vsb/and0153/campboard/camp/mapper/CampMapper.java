@@ -6,6 +6,7 @@ import cz.vsb.and0153.campboard.camp.entity.Camp;
 import cz.vsb.and0153.campboard.tools.mapper.DateTimeMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -15,11 +16,11 @@ public interface CampMapper {
 	CampDto toDto(Camp entity);
 	List<CampDto> toDto(List<Camp> entities);
 
-	CampDto toDto(CampForm form);
+	@Mapping(target = "participants", ignore = true)
+	@Mapping(target = "price", expression = "java((int) (form.getPrice() * 100))")
+	Camp save(CampForm form);
 
-	@Mapping(target = "price", expression = "java((int) (dto.getPrice() * 100))")
-	Camp toEntity(CampDto dto);
-	List<Camp> toEntity(List<CampDto> dtos);
-
-	Camp toEntity(CampForm form);
+	@Mapping(target = "participants", ignore = true)
+	@Mapping(target = "price", expression = "java((int) (form.getPrice() * 100))")
+	Camp update(CampForm form, @MappingTarget Camp entity);
 }

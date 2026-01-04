@@ -5,68 +5,73 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{_base}">
 <title layout:fragment="title" th:text="#{camp_register.title} + ' ' + ${camp.name}"></title>
-<main layout:fragment="content" th:object="${camp}">
-	<form class="flex-grow-1 h-100 w-75 d-flex flex-column gap-3">
-		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3 shadow">
+<main layout:fragment="content">
+	<form class="flex-grow-1 h-100 w-75 d-flex flex-column gap-3" method="post" th:object="${form}"
+		  th:action="@{/camp/register/{id}(id=${camp.id})}"
+	>
+		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3 shadow-sm">
 			<label for="person" class="text-secondary lh-1"
 				   th:text="#{camp_register.person}"
 			>-</label>
 			<div class="w-100 row g-0 align-items-center fw-semibold">
 				<div class="col col-6">
-					<select id="person" class="form-control fw-semibold fs-5" required>
-						<option value selected>---</option>
-						<!--
-						<template x-for="person in persons">
-							<option :value="person.id" x-text="person.firstName + ' ' + person.lastName"></option>
-						</template>
-						-->
+					<select id="person" class="form-control fw-semibold fs-5" th:field="*{person}" required>
+						<option value="" selected>---</option>
+						<option th:each="person : ${persons}"
+								th:value="${person.id}"
+								th:text="${person.name}"
+						></option>
 					</select>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('person')}">
+					<div th:errors="*{person}"></div>
 				</div>
 				<a class="col col-6 text-end link-primary lh-1" th:href="@{/person}"
 				   th:text="#{camp_register.edit_persons}"
 				></a>
 			</div>
 		</div>
-		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3 shadow">
+		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3 shadow-sm">
 			<span class="text-secondary lh-1" th:text="#{camp_register.camp}"></span>
 			<div class="w-100 row g-0 align-items-center fw-semibold">
-				<span class="col col-6 fs-5 lh-1" th:text="*{name}"></span>
+				<span class="col col-6 fs-5 lh-1" th:text="${camp.name}"></span>
 				<a class="col col-6 text-end link-primary lh-1" th:href="@{/}"
 				   th:text="#{camp_register.change_camp}"
 				></a>
 			</div>
 		</div>
-		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3 shadow">
+		<div class="w-100 bg-white rounded-3 p-4 pt-3 d-flex flex-column gap-3 shadow-sm">
 			<span class="text-secondary lh-1"
 				  th:text="#{camp_register.payment.option}"
 			></span>
 			<div class="d-flex gap-3">
-				<input type="radio" id="card" name="payment" value="card" class="btn-check" required>
+				<input type="radio" id="card" th:field="*{payment}" value="CARD" class="btn-check" required>
 				<label for="card" class="flex-grow-1 w-100 btn btn-outline-primary"
 					   th:text="#{camp_register.payment.card}">-</label>
-				<input type="radio" id="bank" name="payment" value="bank" class="btn-check" required>
+				<input type="radio" id="bank" th:field="*{payment}" value="BANK" class="btn-check" required>
 				<label for="bank" class="flex-grow-1 w-100 btn btn-outline-primary"
 					   th:text="#{camp_register.payment.bank}">-</label>
-				<input type="radio" id="mobile" name="payment" value="mobile" class="btn-check" required>
+				<input type="radio" id="mobile" th:field="*{payment}" value="MOBILE" class="btn-check" required>
 				<label for="mobile" class="flex-grow-1 w-100 btn btn-outline-primary"
 					   th:text="#{camp_register.payment.mobile}">-</label>
-				<input type="radio" id="paypal" name="payment" value="paypal" class="btn-check" required>
+				<input type="radio" id="paypal" th:field="*{payment}" value="PAYPAL" class="btn-check" required>
 				<label for="paypal" class="flex-grow-1 w-100 btn btn-outline-primary"
 					   th:text="#{camp_register.payment.paypal}">-</label>
 			</div>
+			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('payment')}">
+				<div th:errors="*{payment}"></div>
+			</div>
 		</div>
-		<div class="w-100 bg-white rounded-3 p-4 flex-grow-1 h-100 d-flex flex-column gap-3 shadow">
+		<div class="w-100 bg-white rounded-3 p-4 flex-grow-1 h-100 d-flex flex-column gap-3 shadow-sm">
 			<label for="info" class="text-secondary lh-1"
 				   th:text="#{camp_register.additional}"
 			>-</label>
-			<textarea id="info" rows=3 style="resize: none;" class="form-control flex-grow-1 h-100"></textarea>
-			<!--
-			<div class="alert alert-danger m-0 w-100 text-center" x-show="errors">
-				<template x-for="error in errors">
-					<div x-text="error"></div>
-				</template>
+			<textarea id="info" rows=3 style="resize: none;" class="form-control flex-grow-1 h-100"
+					  th:field="*{info}"
+			></textarea>
+			<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('info')}">
+				<div th:errors="*{info}"></div>
 			</div>
-			-->
 			<div class="w-100 d-flex justify-content-end">
 				<button class="btn btn-primary px-4 py-2 fs-5" type="submit"
 						th:text="#{camp_register.register}"

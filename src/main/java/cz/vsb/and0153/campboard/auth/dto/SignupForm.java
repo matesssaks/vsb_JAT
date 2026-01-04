@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @PasswordMatches(message = "{validation.password.match}")
-public class RegisterForm {
+public class SignupForm {
 	@NotBlank(message = "{validation.username.required}")
 	@Size(min = 3, message = "{validation.username.min}")
 	@Size(max = 50, message = "{validation.username.max}")

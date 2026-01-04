@@ -2,6 +2,7 @@ package cz.vsb.and0153.campboard.camp.service;
 
 import cz.vsb.and0153.campboard.camp.dto.CampDto;
 import cz.vsb.and0153.campboard.camp.dto.CampForm;
+import cz.vsb.and0153.campboard.camp.entity.Camp;
 import cz.vsb.and0153.campboard.camp.mapper.CampMapper;
 import cz.vsb.and0153.campboard.camp.repository.CampRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,12 @@ public class CampService {
 	}
 
 	public CampDto saveCamp(CampForm form) {
-		return campMapper.toDto(campRepository.save(campMapper.toEntity(form)));
+		Camp camp = Optional.ofNullable(form.getId())
+			.flatMap(campRepository::findById)
+			.map(existing -> campMapper.update(form, existing))
+			.orElseGet(() -> campMapper.save(form));
+
+		return campMapper.toDto(campRepository.save(camp));
 	}
 
 	public void deleteCamp(Long id) {

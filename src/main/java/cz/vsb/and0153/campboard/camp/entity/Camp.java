@@ -1,10 +1,15 @@
 package cz.vsb.and0153.campboard.camp.entity;
 
+import cz.vsb.and0153.campboard.participant.entity.Participant;
+import cz.vsb.and0153.campboard.participant.entity.Participant_;
+import cz.vsb.and0153.campboard.person.entity.Person;
+import cz.vsb.and0153.campboard.person.entity.Person_;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,4 +41,7 @@ public class Camp {
 
 	@Column(name = "capacity", nullable = false)
 	private Integer capacity;
+
+	@OneToMany(mappedBy = Participant_.CAMP, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Participant> participants;
 }

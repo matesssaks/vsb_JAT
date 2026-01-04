@@ -10,7 +10,7 @@
 <main layout:fragment="content">
 	<div class="w-75 row g-3">
 		<a th:each="camp : ${camps}" th:object="${camp}" th:href="@{'/camp/' + *{id}}" class="col col-4 text-decoration-none text-reset">
-			<div class="bg-white d-flex flex-column p-3 rounded-3 align-items-center gap-3 h-100 shadow">
+			<div class="bg-white d-flex flex-column p-3 rounded-3 align-items-center gap-3 h-100 shadow-sm">
 				<div class="ratio ratio-4x3">
 					<img th:src="*{imgUrl}" th:alt="*{name}" class="img-fluid w-100 h-100 object-fit-cover rounded-3">
 				</div>
@@ -19,7 +19,7 @@
 			</div>
 		</a>
 		<a sec:authorize="hasRole('ADMIN')" class="col col-4 text-decoration-none text-reset" th:href="@{'/camp/new'}" data-modal>
-			<div class="bg-success-subtle text-success d-flex flex-column p-3 rounded-3 align-items-center justify-content-center gap-3 h-100 shadow">
+			<div class="bg-white text-success d-flex flex-column p-3 rounded-3 align-items-center justify-content-center gap-3 h-100 shadow-sm">
 				<i class="bi bi-plus-lg display-1"></i>
 			</div>
 		</a>

@@ -1,12 +1,18 @@
 package cz.vsb.and0153.campboard.camp.controller;
 
+import cz.vsb.and0153.campboard.auth.dto.AppUserDetails;
 import cz.vsb.and0153.campboard.camp.dto.CampDto;
 import cz.vsb.and0153.campboard.camp.dto.CampForm;
+import cz.vsb.and0153.campboard.camp.dto.RegisterForm;
 import cz.vsb.and0153.campboard.camp.service.CampService;
+import cz.vsb.and0153.campboard.participant.service.ParticipantService;
+import cz.vsb.and0153.campboard.person.dto.PersonDto;
+import cz.vsb.and0153.campboard.person.service.PersonService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +31,8 @@ public class CampController {
 	private static final String CAMP_DELETE_MODAL = "camp/modal/deleteCamp";
 
 	private final CampService campService;
+	private final PersonService personService;
+	private final ParticipantService participantService;
 
 	@GetMapping("")
 	@PreAuthorize("permitAll()")
@@ -46,13 +54,43 @@ public class CampController {
 
 	@GetMapping("/register/{id}")
 	@PreAuthorize("isAuthenticated()")
-	public String registerCamp(@PathVariable Long id, Model model) {
+	public String registerCamp(
+		@PathVariable Long id,
+		Model model,
+		@AuthenticationPrincipal AppUserDetails userDetails
+	) {
 		CampDto camp = campService.getCamp(id).orElseThrow(() ->
 			new ResponseStatusException(HttpStatus.NOT_FOUND)
 		);
 
+		model.addAttribute("form", new RegisterForm());
 		model.addAttribute("camp", camp);
+		model.addAttribute("persons", personService.getAllPersonsByUser(userDetails.getUser()));
 		return CAMP_REGISTER_TEMPLATE;
+	}
+
+	@PostMapping("/register/{id}")
+	@PreAuthorize("@personSecurity.isPersonManager(principal, #form.person)")
+	public String registerCamp(
+		@PathVariable Long id,
+		@ModelAttribute("form") @Valid RegisterForm form,
+		BindingResult result
+	) {
+		if (result.hasErrors()) {
+			return CAMP_REGISTER_TEMPLATE;
+		}
+
+		CampDto camp = campService.getCamp(id).orElseThrow(() ->
+			new ResponseStatusException(HttpStatus.NOT_FOUND)
+		);
+
+		PersonDto person = personService.getPerson(form.getPerson()).orElseThrow(() ->
+			new ResponseStatusException(HttpStatus.NOT_FOUND)
+		);
+
+		participantService.register(person, camp);
+
+		return "redirect:/participant";
 	}
 
 	@GetMapping("/new")

@@ -15,8 +15,7 @@ CREATE TABLE person (
 	town varchar(50) NOT NULL,
 	street varchar(50) NOT NULL,
 	postal_code varchar(10) NOT NULL,
-	born_date timestamp with time zone NOT NULL,
-	CHECK (born_date < current_timestamp)
+	born_date timestamp with time zone NOT NULL
 );
 
 CREATE TABLE camp (
@@ -33,6 +32,14 @@ CREATE TABLE camp (
 	CHECK (start_date < end_date)
 );
 
+CREATE TABLE participant (
+	participant_id identity PRIMARY KEY,
+	camp_id int NOT NULL REFERENCES camp (camp_id),
+	person_id int NOT NULL REFERENCES person (person_id),
+	registered_date timestamp with time zone NOT NULL,
+	UNIQUE (camp_id, person_id)
+);
+
 CREATE TABLE role (
 	role_id identity PRIMARY KEY,
 	name varchar(20) NOT NULL,
@@ -43,12 +50,9 @@ CREATE TABLE role (
 	can_receive_info boolean NOT NULL
 );
 
-CREATE TABLE participant (
-	participant_id identity PRIMARY KEY,
-	camp_id int NOT NULL REFERENCES camp (camp_id),
-	person_id int NOT NULL REFERENCES person (person_id),
-	role_id int NOT NULL DEFAULT (1) REFERENCES role (role_id),
-	UNIQUE (camp_id, person_id)
+CREATE TABLE worker (
+	participant_id int PRIMARY KEY REFERENCES participant (participant_id),
+	role_id int NOT NULL REFERENCES role (role_id)
 );
 
 CREATE TABLE participant_task (
@@ -56,13 +60,3 @@ CREATE TABLE participant_task (
 	task_id int NOT NULL,
 	PRIMARY KEY (participant_id, task_id)
 );
-
-CREATE TABLE drug (
-	drug_id identity PRIMARY KEY,
-	person_id int NOT NULL REFERENCES person (person_id),
-	name varchar(50) NOT NULL,
-	dosage int NOT NULL,
-	description varchar(255)
-);
-
-

@@ -1,13 +1,26 @@
 package cz.vsb.and0153.campboard.person.dto;
 
-import cz.vsb.and0153.campboard.user.dto.UserSummaryDto;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor
-public class PersonDto extends PersonSummaryDto {
-	private UserSummaryDto user;
+public class PersonDto {
+	private Long id;
+
+	private String personalNumber;
+
+	private String name;
+
+	private String town;
+
+	private String street;
+
+	private String postalCode;
+
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private LocalDate bornDate;
 }

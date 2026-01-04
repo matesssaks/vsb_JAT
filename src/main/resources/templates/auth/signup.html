@@ -9,7 +9,7 @@
 <div layout:fragment="header_buttons"></div>
 <main layout:fragment="content">
 	<div class="w-25 flex-grow-1 h-100 d-flex flex-column justify-content-center">
-		<form class="bg-white rounded-3 p-3 d-flex flex-column align-items-center gap-4"
+		<form class="bg-white rounded-3 p-3 d-flex flex-column align-items-center gap-4 shadow-sm"
 			  th:object="${form}" th:action="@{/signup}" method="post"
 		>
 			<span class="fs-2 fw-semibold lh-1" th:text="#{signup.signup}"></span>

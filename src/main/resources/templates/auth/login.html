@@ -9,7 +9,7 @@
 <div layout:fragment="header_buttons"></div>
 <main layout:fragment="content">
 	<div class="w-25 flex-grow-1 h-100 d-flex flex-column justify-content-center">
-		<form class="bg-white rounded-3 p-3 d-flex flex-column align-items-center gap-4" th:action="@{/login}" method="post">
+		<form class="bg-white rounded-3 p-3 d-flex flex-column align-items-center gap-4 shadow-sm" th:action="@{/login}" method="post">
 			<span class="fs-2 fw-semibold lh-1" th:text="#{login.login}"></span>
 			<div class="form-floating w-100">
 				<input class="form-control" id="username" name="username" type="text" th:placeholder="#{login.username}" autofocus required>

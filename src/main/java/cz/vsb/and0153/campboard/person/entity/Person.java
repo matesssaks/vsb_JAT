@@ -1,11 +1,14 @@
 package cz.vsb.and0153.campboard.person.entity;
 
+import cz.vsb.and0153.campboard.participant.entity.Participant;
+import cz.vsb.and0153.campboard.participant.entity.Participant_;
 import cz.vsb.and0153.campboard.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,4 +41,7 @@ public class Person {
 
 	@Column(name = "born_date", nullable = false)
 	private OffsetDateTime bornDate;
+
+	@OneToMany(mappedBy = Participant_.PERSON, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Participant> participants;
 }

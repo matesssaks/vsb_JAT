@@ -11,8 +11,8 @@
 			<span th:text="#{_user.menu.header}"></span>
 			<a th:class="'nav-link fs-4 pe-5' + (${page} == 'person' ? ' active' : '')"
 			   th:href="@{/person}" th:text="#{_user.menu.persons}"></a>
-			<a th:class="'nav-link fs-4 pe-5' + (${page} == 'registrations' ? ' active' : '')"
-			   th:href="@{/registrations}" th:text="#{_user.menu.registrations}"></a>
+			<a th:class="'nav-link fs-4 pe-5' + (${page} == 'participant' ? ' active' : '')"
+			   th:href="@{/participant}" th:text="#{_user.menu.registrations}"></a>
 		</nav>
 	</div>
 </body>

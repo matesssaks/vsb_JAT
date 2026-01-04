@@ -8,11 +8,11 @@
 >
 <title layout:fragment="title" th:text="#{persons.title}"></title>
 <main layout:fragment="content">
-	<a class="w-75 btn icon-link bg-white text-success text-center p-4 rounded-3 d-flex justify-content-center"
+	<a class="w-75 btn icon-link bg-white text-success text-center p-4 rounded-3 d-flex justify-content-center shadow-sm"
 	   th:href="@{/person/new}" data-modal>
 		<i class="bi bi-plus-lg fs-2"></i>
 	</a>
-	<div th:each="person : ${persons}" th:object="${person}" class="w-75 bg-white p-4 rounded-3 fs-5 d-flex justify-content-between align-items-center">
+	<div th:each="person : ${persons}" th:object="${person}" class="w-75 bg-white p-4 rounded-3 fs-5 d-flex justify-content-between align-items-center shadow-sm">
 		<span class="fw-semibold"><span th:text="*{name}"></span></span>
 		<div class="d-flex gap-3">
 			<a class="btn icon-link p-1 fs-2 text-primary" th:href="@{/person/edit/{id}(id=*{id})}" data-modal>

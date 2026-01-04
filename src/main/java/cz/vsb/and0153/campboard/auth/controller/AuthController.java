@@ -1,6 +1,6 @@
 package cz.vsb.and0153.campboard.auth.controller;
 
-import cz.vsb.and0153.campboard.auth.dto.RegisterForm;
+import cz.vsb.and0153.campboard.auth.dto.SignupForm;
 import cz.vsb.and0153.campboard.auth.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -28,13 +28,13 @@ public class AuthController {
 
 	@GetMapping("/signup")
 	public String signupPage(Model model) {
-		model.addAttribute("form", new RegisterForm());
+		model.addAttribute("form", new SignupForm());
 		return "auth/signup";
 	}
 
 	@PostMapping("/signup")
 	public String signup(
-		@ModelAttribute("form") @Valid RegisterForm form,
+		@ModelAttribute("form") @Valid SignupForm form,
 		BindingResult result
 	) {
 		if (result.hasErrors()) {
