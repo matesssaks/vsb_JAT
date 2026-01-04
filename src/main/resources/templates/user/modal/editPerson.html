@@ -1,0 +1,90 @@
+<div
+	xmlns:th="http://www.thymeleaf.org"
+	class="modal-dialog modal-dialog-centered modal-lg"
+>
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" th:text="${person.id} == null ? #{persons.modal.new} : #{persons.modal.edit}">-</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" th:aria-label="#{close}"></button>
+		</div>
+		<form method="post" th:action="@{/person/save}" th:object="${person}" data-modal>
+			<input type="hidden" th:field="*{id}">
+			<div class="modal-body d-flex flex-column align-items-center gap-4">
+				<div class="d-flex gap-3 w-100">
+					<div class="flex-grow-1 w-50 form-floating">
+						<input class="form-control" id="name" type="text" autofocus required
+							   th:placeholder="#{persons.modal.name}"
+							   th:field="*{name}">
+						<label for="name"
+							   th:text="#{persons.modal.name}"
+						>-</label>
+					</div>
+					<div class="flex-grow-1 w-50 form-floating">
+						<input class="form-control" id="personalNumber" type="text" required
+							   th:placeholder="#{persons.modal.personalNumber}"
+							   th:field="*{personalNumber}"
+						>
+						<label for="personalNumber"
+							   th:text="#{persons.modal.personalNumber}"
+						>-</label>
+					</div>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('name')} or ${#fields.hasErrors('personalNumber')}">
+					<div th:errors="*{name}"></div>
+					<div th:errors="*{personalNumber}"></div>
+				</div>
+				<div class="d-flex gap-3 w-100">
+					<div class="flex-grow-1 w-50 form-floating">
+						<input class="form-control" id="town" type="text" required
+							   th:placeholder="#{persons.modal.town}"
+							   th:field="*{town}"
+						>
+						<label for="town"
+							   th:text="#{persons.modal.town}"
+						>-</label>
+					</div>
+					<div class="flex-grow-1 w-50 form-floating">
+						<input class="form-control" id="postalCode" type="text" required
+							   th:placeholder="#{persons.modal.postalCode}"
+							   th:field="*{postalCode}"
+						>
+						<label for="postalCode"
+							   th:text="#{persons.modal.postalCode}"
+						>-</label>
+					</div>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('town')} or ${#fields.hasErrors('postalCode')}">
+					<div th:errors="*{town}"></div>
+					<div th:errors="*{postalCode}"></div>
+				</div>
+				<div class="form-floating w-100">
+					<input class="form-control" id="street" type="text" required
+						   th:placeholder="#{persons.modal.street}"
+						   th:field="*{street}"
+					>
+					<label for="street"
+						   th:text="#{persons.modal.street}"
+					>-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('street')}">
+					<div th:errors="*{street}"></div>
+				</div>
+				<div class="form-floating w-100">
+					<input class="form-control" id="bornDate" type="date" required
+						   th:placeholder="#{persons.modal.bornDate}"
+						   th:field="*{bornDate}"
+					>
+					<label for="bornDate"
+						   th:text="#{persons.modal.bornDate}"
+					>-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('bornDate')}">
+					<div th:errors="*{bornDate}"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary px-3 py-2" th:text="#{save}"></button>
+			</div>
+		</form>
+	</div>
+</div>

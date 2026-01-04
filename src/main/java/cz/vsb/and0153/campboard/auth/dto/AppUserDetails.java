@@ -1,7 +1,6 @@
 package cz.vsb.and0153.campboard.auth.dto;
 
 import cz.vsb.and0153.campboard.user.entity.User;
-import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,10 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@RequiredArgsConstructor
-public class AppUserDetails implements UserDetails {
-
-	private final transient User user;
+public record AppUserDetails(
+	User user
+) implements UserDetails {
 
 	@Override
 	@NonNull

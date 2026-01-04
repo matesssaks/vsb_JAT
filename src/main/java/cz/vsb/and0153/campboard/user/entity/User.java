@@ -1,8 +1,12 @@
 package cz.vsb.and0153.campboard.user.entity;
 
+import cz.vsb.and0153.campboard.person.entity.Person;
+import cz.vsb.and0153.campboard.person.entity.Person_;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,5 +28,8 @@ public class User {
 	private String password;
 
 	@Column(name = "admin", nullable = false)
-	private boolean admin;
+	private boolean admin = false;
+
+	@OneToMany(mappedBy = Person_.USER, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Person> persons;
 }

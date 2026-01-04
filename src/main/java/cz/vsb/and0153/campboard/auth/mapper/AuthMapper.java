@@ -17,5 +17,6 @@ public abstract class AuthMapper {
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "password", expression = "java(encoder.encode(form.getPassword()))")
 	@Mapping(target = "admin", expression = "java(false)")
+	@Mapping(target = "persons", ignore = true)
 	public abstract User toEntity(RegisterForm form);
 }

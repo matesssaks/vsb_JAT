@@ -1,6 +1,7 @@
 package cz.vsb.and0153.campboard.camp.controller;
 
 import cz.vsb.and0153.campboard.camp.dto.CampDto;
+import cz.vsb.and0153.campboard.camp.dto.CampForm;
 import cz.vsb.and0153.campboard.camp.service.CampService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -56,7 +57,7 @@ public class CampController {
 
 	@GetMapping("/new")
 	@PreAuthorize("hasRole('ADMIN')")
-	public String editCamp(Model model) {
+	public String newCamp(Model model) {
 		model.addAttribute("camp", new CampDto());
 		return CAMP_EDIT_MODAL;
 	}
@@ -75,14 +76,14 @@ public class CampController {
 	@PostMapping("/save")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String saveCamp(
-		@ModelAttribute("camp") @Valid CampDto camp,
+		@ModelAttribute("camp") @Valid CampForm form,
 		BindingResult result
 	) {
 		if (result.hasErrors()) {
 			return CAMP_EDIT_MODAL;
 		}
 
-		Long id = campService.saveCamp(camp).getId();
+		Long id = campService.saveCamp(form).getId();
 		return "redirect:/camp/" + id;
 	}
 

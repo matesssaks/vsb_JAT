@@ -24,7 +24,7 @@
 				</div>
 				<div class="bg-dark text-white p-4 rounded-3 fs-3 d-flex flex-container justify-content-between">
 					<span><span th:text="*{price}"></span> <th:block th:text="#{czk}"></th:block></span>
-					<a class="btn btn-light text-black fs-5 py-1 px-5 icon-link" th:href="@{'/camp/register/' + *{id}}"
+					<a class="btn btn-light text-black fs-5 py-1 px-5 icon-link" th:href="@{/camp/register/{id}(id=*{id})}"
 					   th:text="#{camp.register}">
 					</a>
 				</div>
@@ -33,14 +33,14 @@
 	</div>
 	<div sec:authorize="hasRole('ADMIN')" class="position-fixed z-3 d-flex gap-3" style="bottom: 30px; right: 30px">
 		<a
-			th:href="@{/camp/delete/{id}(id=${camp.id})}"
+			th:href="@{/camp/delete/{id}(id=*{id})}"
 			class="btn btn-danger rounded-circle shadow-lg d-flex align-items-center justify-content-center p-3"
 			data-modal
 		>
 			<i class="bi bi-trash fs-3 lh-1"></i>
 		</a>
 		<a
-		   th:href="@{/camp/edit/{id}(id=${camp.id})}"
+		   th:href="@{/camp/edit/{id}(id=*{id})}"
 		   class="btn btn-dark rounded-circle shadow-lg d-flex align-items-center justify-content-center p-3"
 		   data-modal
 		>

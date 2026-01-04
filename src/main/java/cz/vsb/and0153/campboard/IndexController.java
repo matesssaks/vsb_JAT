@@ -22,9 +22,11 @@ public class IndexController implements ErrorController {
 		return campController.getCamps(model);
 	}
 
+	/*
 	@GetMapping("/error")
 	@PreAuthorize("permitAll()")
 	public String errorPage() {
 		return "redirect:/";
 	}
+	*/
 }

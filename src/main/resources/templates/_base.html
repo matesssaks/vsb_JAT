@@ -33,17 +33,17 @@
 						<span th:text="${#authentication.name}"></span><i class="bi bi-person-fill fs-2"></i>
 					</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" th:href="@{/persons}">Persons</a></li>
-						<li><a class="dropdown-item" th:href="@{/registrations}">Registrations</a></li>
+						<li><a class="dropdown-item" th:href="@{/person}" th:text="#{_user.menu.persons}"></a></li>
+						<li><a class="dropdown-item" th:href="@{/registrations}" th:text="#{_user.menu.registrations}"></a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li>
 							<form method="post" th:action="@{/logout}">
-								<button type="submit" class="dropdown-item btn-outline-danger">Log Out</button>
+								<button type="submit" class="dropdown-item btn-outline-danger" th:text="#{logout}"></button>
 							</form>
 						</li>
 					</ul>
 				</div>
-				<a class="btn btn-outline-primary" sec:authorize="isAnonymous()" th:href="@{/login}">Log In</a>
+				<a class="btn btn-outline-primary" sec:authorize="isAnonymous()" th:href="@{/login}" th:text="#{login}"></a>
 			</div>
 		</header>
 		<div class="flex-grow-1 d-flex">

@@ -1,6 +1,7 @@
 package cz.vsb.and0153.campboard.camp.service;
 
 import cz.vsb.and0153.campboard.camp.dto.CampDto;
+import cz.vsb.and0153.campboard.camp.dto.CampForm;
 import cz.vsb.and0153.campboard.camp.mapper.CampMapper;
 import cz.vsb.and0153.campboard.camp.repository.CampRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,8 @@ public class CampService {
 		return campRepository.findById(id).map(campMapper::toDto);
 	}
 
-	public CampDto saveCamp(CampDto camp) {
-		return campMapper.toDto(campRepository.save(campMapper.toEntity(camp)));
+	public CampDto saveCamp(CampForm form) {
+		return campMapper.toDto(campRepository.save(campMapper.toEntity(form)));
 	}
 
 	public void deleteCamp(Long id) {
