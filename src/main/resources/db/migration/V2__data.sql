@@ -54,12 +54,11 @@ insert into person (user_id, personal_number, name, town, street, postal_code, b
 insert into person (user_id, personal_number, name, town, street, postal_code, born_date) values (8, '123493/040', 'Uriel Ternent', 'Quzhou', '18417 Dunning Parkway', '76930', '2017-05-14');
 insert into person (user_id, personal_number, name, town, street, postal_code, born_date) values (3, '123494/040', 'Sky Arnoll', 'Baltimore', '68 Holmberg Parkway', '79430', '2005-01-25');
 
-insert into role (role_id, name, can_edit_camp, can_create_task, can_edit_task, can_view_drugs, can_receive_info) values (1, 'Účastník', false, false, false, false, false);
-insert into role (role_id, name, can_edit_camp, can_create_task, can_edit_task, can_view_drugs, can_receive_info) values (2, 'Praktikant', false, false, true, false, false);
-insert into role (role_id, name, can_edit_camp, can_create_task, can_edit_task, can_view_drugs, can_receive_info) values (3, 'Vedoucí', false, true, true, false, false);
-insert into role (role_id, name, can_edit_camp, can_create_task, can_edit_task, can_view_drugs, can_receive_info) values (4, 'Zdravotník', false, false, true, true, true);
-insert into role (role_id, name, can_edit_camp, can_create_task, can_edit_task, can_view_drugs, can_receive_info) values (5, 'Hlavní vedoucí', false, true, true, true, true);
-insert into role (role_id, name, can_edit_camp, can_create_task, can_edit_task, can_view_drugs, can_receive_info) values (6, 'Vedoucí organizace', true, true, true, true, false);
+insert into role (name, can_edit_worker, can_create_task, can_toggle_task) values ('Marketing', false, false, false);
+insert into role (name, can_edit_worker, can_create_task, can_toggle_task) values ('Praktikant', false, false, true);
+insert into role (name, can_edit_worker, can_create_task, can_toggle_task) values ('Vedoucí', false, true, true);
+insert into role (name, can_edit_worker, can_create_task, can_toggle_task) values ('Zdravotník', false, false, true);
+insert into role (name, can_edit_worker, can_create_task, can_toggle_task) values ('Hlavní vedoucí', true, true, true);
 
 insert into camp (name, description, img_url, start_date, end_date, price, capacity) values ('Nový Asgard', 'Můžete se těšit na kreativní celotáborovku, oddílovky, strukturované hry, velkou výpravu, survival, přespání, sportování, ale i deskovky a tvoření.', 'https://www.orientka.cz/wp-content/uploads/2024/11/novyasgard.png', '2024-2-16 00:00:00+01', '2024-2-23 00:00:00+01', 399644, 55);
 insert into camp (name, description, img_url, start_date, end_date, price, capacity) values ('Jumanji', 'Vyzkoušíš si vylézt stěnu jako Adam Ondra nebo střílet z luku jako Robin Hood.', 'https://www.orientka.cz/wp-content/uploads/2024/11/jumanji-1024x724.png', '2024-10-23 00:00:00+01', '2024-10-29 00:00:00+01', 365154, 70);

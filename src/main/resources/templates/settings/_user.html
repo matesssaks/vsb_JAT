@@ -2,6 +2,7 @@
 <html
 	lang="en"
 	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{_base}"
 >
@@ -13,6 +14,10 @@
 			   th:href="@{/person}" th:text="#{_user.menu.persons}"></a>
 			<a th:class="'nav-link fs-4 pe-5' + (${page} == 'participant' ? ' active' : '')"
 			   th:href="@{/participant}" th:text="#{_user.menu.registrations}"></a>
+			<a th:class="'nav-link fs-4 pe-5' + (${page} == 'role' ? ' active' : '')"
+			   th:href="@{/role}" th:text="#{_user.menu.roles}"
+			   sec:authorize="hasRole('ADMIN')"
+			></a>
 		</nav>
 	</div>
 </body>

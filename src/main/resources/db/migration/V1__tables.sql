@@ -43,11 +43,9 @@ CREATE TABLE participant (
 CREATE TABLE role (
 	role_id identity PRIMARY KEY,
 	name varchar(20) NOT NULL,
-	can_edit_camp boolean NOT NULL,
+	can_edit_worker boolean NOT NULL,
 	can_create_task boolean NOT NULL,
-	can_edit_task boolean NOT NULL,
-	can_view_drugs boolean NOT NULL,
-	can_receive_info boolean NOT NULL
+	can_toggle_task boolean NOT NULL
 );
 
 CREATE TABLE worker (

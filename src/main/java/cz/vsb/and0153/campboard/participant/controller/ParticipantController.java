@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/participant")
 public class ParticipantController {
 
-	private static final String PARTICIPANT_LIST_TEMPLATE = "user/participants";
+	private static final String PARTICIPANT_LIST_TEMPLATE = "settings/participants";
 	private static final String PARTICIPANT_LIST_VAR = "participants";
 
 	private final ParticipantService participantService;

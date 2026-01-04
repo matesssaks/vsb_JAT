@@ -1,0 +1,20 @@
+<div
+	xmlns:th="http://www.thymeleaf.org"
+	class="modal-dialog modal-dialog-centered"
+>
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" th:text="#{_modal.delete.title}">-</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" th:aria-label="#{close}"></button>
+		</div>
+		<div class="modal-body d-flex flex-column align-items-center gap-4">
+			<span th:utext="#{_modal.delete.text('<strong>' + ${role.name} + '</strong>')}"></span>
+		</div>
+		<form th:action="@{/role/delete/{id}(id=${role.id})}" method="post">
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{cancel}"></button>
+				<button type="submit" class="btn btn-danger" th:text="#{delete}"></button>
+			</div>
+		</form>
+	</div>
+</div>

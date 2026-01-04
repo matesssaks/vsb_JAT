@@ -35,6 +35,9 @@
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" th:href="@{/person}" th:text="#{_user.menu.persons}"></a></li>
 						<li><a class="dropdown-item" th:href="@{/participant}" th:text="#{_user.menu.registrations}"></a></li>
+						<li><a class="dropdown-item" th:href="@{/role}" th:text="#{_user.menu.roles}"
+							   sec:authorize="hasRole('ADMIN')"
+						></a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li>
 							<form method="post" th:action="@{/logout}">

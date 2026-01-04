@@ -1,0 +1,75 @@
+<div
+	xmlns:th="http://www.thymeleaf.org"
+	class="modal-dialog modal-dialog-centered modal-lg"
+>
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" th:text="${role.id} == null ? #{roles.modal.new} : #{roles.modal.edit}">-</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" th:aria-label="#{close}"></button>
+		</div>
+		<form method="post" th:action="@{/role/save}" th:object="${role}" data-modal>
+			<input type="hidden" th:field="*{id}">
+			<div class="modal-body d-flex flex-column align-items-center gap-4">
+				<div class="flex-grow-1 w-100 form-floating">
+					<input class="form-control" id="name" type="text" autofocus required
+						   th:placeholder="#{roles.modal.name}"
+						   th:field="*{name}">
+					<label for="name"
+						   th:text="#{roles.modal.name}"
+					>-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('name')}">
+					<div th:errors="*{name}"></div>
+				</div>
+				<div class="flex-grow-1 w-100 form-check d-flex gap-4 align-items-center">
+					<input type="checkbox" class="btn-check" id="canEditWorker" autocomplete="off"
+						   name="canEditWorker"
+						   th:checked="*{canEditWorker}">
+					<label class="btn btn-outline-primary icon-link p-1 fs-5 text-white" for="canEditWorker"
+						   aria-label="btn" th:aria-label="#{roles.modal.canEditWorker}"
+					>
+						<i class="bi bi-check-lg"></i>
+					</label>
+					<input type="hidden" name="_canEditWorker" value="on">
+					<label th:text="#{roles.modal.canEditWorker}" for="canEditWorker">-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('canEditWorker')}">
+					<div th:errors="*{canEditWorker}"></div>
+				</div>
+				<div class="flex-grow-1 w-100 form-check d-flex gap-4 align-items-center">
+					<input type="checkbox" class="btn-check" id="canCreateTask" autocomplete="off"
+						   name="canCreateTask"
+						   th:checked="*{canCreateTask}">
+					<label class="btn btn-outline-primary icon-link p-1 fs-5 text-white" for="canCreateTask"
+						   aria-label="btn" th:aria-label="#{roles.modal.canCreateTask}"
+					>
+						<i class="bi bi-check-lg"></i>
+					</label>
+					<input type="hidden" name="_canCreateTask" value="on">
+					<label th:text="#{roles.modal.canCreateTask}" for="canCreateTask">-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('canCreateTask')}">
+					<div th:errors="*{canCreateTask}"></div>
+				</div>
+				<div class="flex-grow-1 w-100 form-check d-flex gap-4 align-items-center">
+					<input type="checkbox" class="btn-check" id="canToggleTask" autocomplete="off"
+						   name="canToggleTask"
+						   th:checked="*{canToggleTask}">
+					<label class="btn btn-outline-primary icon-link p-1 fs-5 text-white" for="canToggleTask"
+						   aria-label="btn" th:aria-label="#{roles.modal.canToggleTask}"
+					>
+						<i class="bi bi-check-lg"></i>
+					</label>
+					<input type="hidden" name="_canToggleTask" value="on">
+					<label th:text="#{roles.modal.canToggleTask}" for="canToggleTask">-</label>
+				</div>
+				<div class="alert alert-danger m-0 w-100 text-center" th:if="${#fields.hasErrors('canToggleTask')}">
+					<div th:errors="*{canToggleTask}"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary px-3 py-2" th:text="#{save}"></button>
+			</div>
+		</form>
+	</div>
+</div>

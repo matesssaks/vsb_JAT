@@ -21,9 +21,9 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/person")
 public class PersonController {
 
-	private static final String PERSON_LIST_TEMPLATE = "user/persons";
-	private static final String PERSON_EDIT_MODAL = "user/modal/editPerson";
-	private static final String PERSON_DELETE_MODAL = "user/modal/deletePerson";
+	private static final String PERSON_LIST_TEMPLATE = "settings/persons";
+	private static final String PERSON_EDIT_MODAL = "settings/modal/editPerson";
+	private static final String PERSON_DELETE_MODAL = "settings/modal/deletePerson";
 	private static final String PERSON_LIST_VAR = "persons";
 	private static final String PERSON_VAR = "person";
 
